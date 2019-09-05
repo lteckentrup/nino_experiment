@@ -92,13 +92,13 @@ def plot(model, name, experiment, position, v):
     plt.colorbar(ticks = levels, cax=cax, orientation='horizontal')
     
     if v in ('resp', 'ter'):
-        cbar.set_label('Composite anomaly TER [gC yr-1]',fontsize=13)
+        cbar.set_label('Composite anomaly TER [gC]',fontsize=13)
     elif v in ('dist'):
-        cbar.set_label('Composite anomaly DIST [gC yr-1]',fontsize=13)
+        cbar.set_label('Composite anomaly DIST [gC]',fontsize=13)
     elif v in ('nbp', 'mnee'):
-        cbar.set_label('Composite anomaly NBP [gC yr-1]',fontsize=13)
+        cbar.set_label('Composite anomaly NBP [gC]',fontsize=13)
     elif v in ('mgpp', 'gpp'):
-        cbar.set_label('Composite anomaly GPP [gC yr-1]',fontsize=13)
+        cbar.set_label('Composite anomaly GPP [gC]',fontsize=13)
     else:
         pass
 
