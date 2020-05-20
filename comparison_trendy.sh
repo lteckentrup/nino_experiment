@@ -1,4 +1,4 @@
-pathwayTRENDY=''
+pathwayTRENDY='/srv/ccrc/data02/z5227845/research/TRENDY/S2_old'
 
 for model in CLM4.5 JSBACH JULES LPX VEGAS VISIT; do
   cdo -L -setreftime,1860-01-01,12:00,1day -settaxis,1860-01-01,12:00,1month \
@@ -56,9 +56,9 @@ for var in gpp ter; do
         TRENDY/$var'/'VEGAS_S2_$var'.'nc
 
   mv TRENDY/$var'/'VISIT_S2_$var'.'nc TRENDY/$var'/'VISIT_S2_$var'_'original.nc
-    cdo -L -setgrid,halfdegree.txt TRENDY/$var'/'VEGAS_S2_$var'_'original.nc \
-        TRENDY/$var'/'VEGAS_S2_$var'.'nc
-         
+    cdo -L -setgrid,halfdegree.txt TRENDY/$var'/'VISIT_S2_$var'_'original.nc \
+        TRENDY/$var'/'VISIT_S2_$var'.'nc
+
   for model in CLM4.5 JSBACH JULES LPX ORCHIDEE VEGAS VISIT; do
     cdo selyear,1960/2013 TRENDY/$var'/'$model'_'S2_$var'.'nc \
         TRENDY/$var'/'$model'_'S2_$var'_'1960-2013.nc
@@ -107,42 +107,10 @@ for var in gpp ter; do
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
         -gridarea TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly_global.nc
-    cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,23,90 -mul \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc -gridarea \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly_NH.nc
-    cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-60,23 -mul \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc -gridarea \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly_SH.nc
-
-    cdo -L -divc,1e+12 -fldsum -mul \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc \
-        -gridarea TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly_global.nc
-    cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,23,90 -mul \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc -gridarea \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly_NH.nc
-    cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-60,23 -mul \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc -gridarea \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly_SH.nc
-  done
-
-  cdo ensmean TRENDY/$var'/'*$var*anomaly*CP.nc \
-  TRENDY/$var'/'ensmean_$var'_'CP.nc
-  cdo ensmean TRENDY/$var'/'*$var*anomaly*EP.nc \
-  TRENDY/$var'/'ensmean_$var'_'EP.nc
-
-    cdo -L -divc,1e+12 -fldsum -mul \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
-        -gridarea TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly_global.nc
     cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-23,23 -mul \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc -gridarea \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'P_anomaly_tropical.nc
+        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly_tropical.nc
     cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc -gridarea \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
@@ -162,7 +130,6 @@ for var in gpp ter; do
         TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly_australia.nc
   done
 
-for var in gpp ter; do
   cdo ensmean TRENDY/$var'/'*$var*anomaly*CP.nc \
   TRENDY/$var'/'ensmean_$var'_'CP.nc
   cdo ensmean TRENDY/$var'/'*$var*anomaly*EP.nc \
@@ -174,7 +141,7 @@ for var in gpp ter; do
   cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-23,23 -mul \
       TRENDY/$var'/'ensmean_$var'_'CP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'CP.nc \
-      TRENDY/$var'/'ensmean_$var'_'anomaly_tropical.nc
+      TRENDY/$var'/'ensmean_$var'_'CP_anomaly_tropical.nc
   cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
       TRENDY/$var'/'ensmean_$var'_'CP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'CP.nc \
