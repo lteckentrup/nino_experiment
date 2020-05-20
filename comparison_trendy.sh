@@ -135,27 +135,60 @@ for var in gpp ter; do
   cdo ensmean TRENDY/$var'/'*$var*anomaly*EP.nc \
   TRENDY/$var'/'ensmean_$var'_'EP.nc
 
+    cdo -L -divc,1e+12 -fldsum -mul \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
+        -gridarea TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly_global.nc
+    cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-23,23 -mul \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc -gridarea \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'P_anomaly_tropical.nc
+    cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc -gridarea \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly_australia.nc
+
+    cdo -L -divc,1e+12 -fldsum -mul \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc \
+        -gridarea TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly_global.nc
+    cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-23,23 -mul \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc -gridarea \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly_tropical.nc
+    cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc -gridarea \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc \
+        TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly_australia.nc
+  done
+
+for var in gpp ter; do
+  cdo ensmean TRENDY/$var'/'*$var*anomaly*CP.nc \
+  TRENDY/$var'/'ensmean_$var'_'CP.nc
+  cdo ensmean TRENDY/$var'/'*$var*anomaly*EP.nc \
+  TRENDY/$var'/'ensmean_$var'_'EP.nc
+
   cdo -L -divc,1e+12 -fldsum -mul TRENDY/$var'/'ensmean_$var'_'CP.nc \
       -gridarea TRENDY/$var'/'ensmean_$var'_'CP.nc \
       TRENDY/$var'/'ensmean_$var'_'CP_anomaly_global.nc
-  cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,23,90 -mul \
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-23,23 -mul \
       TRENDY/$var'/'ensmean_$var'_'CP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'CP.nc \
-      TRENDY/$var'/'ensmean_$var'_'anomaly_NH.nc
-  cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-60,23 -mul \
+      TRENDY/$var'/'ensmean_$var'_'anomaly_tropical.nc
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
       TRENDY/$var'/'ensmean_$var'_'CP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'CP.nc \
-      TRENDY/$var'/'ensmean_$var'_'CP_anomaly_SH.nc
+      TRENDY/$var'/'ensmean_$var'_'CP_anomaly_australia.nc
 
   cdo -L -divc,1e+12 -fldsum -mul TRENDY/$var'/'ensmean_$var'_'EP.nc \
       -gridarea TRENDY/$var'/'ensmean_$var'_'EP.nc \
       TRENDY/$var'/'ensmean_$var'_'EP_anomaly_global.nc
-  cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,23,90 -mul \
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-23,23 -mul \
       TRENDY/$var'/'ensmean_$var'_'EP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'EP.nc \
-      TRENDY/$var'/'ensmean_$var'_'EP_anomaly_NH.nc
-  cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-60,23 -mul \
+      TRENDY/$var'/'ensmean_$var'_'EP_anomaly_tropical.nc
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
       TRENDY/$var'/'ensmean_$var'_'EP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'EP.nc \
-      TRENDY/$var'/'ensmean_$var'_'EP_anomaly_SH.nc
+      TRENDY/$var'/'ensmean_$var'_'EP_anomaly_australia.nc
 done
