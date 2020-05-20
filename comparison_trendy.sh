@@ -136,7 +136,7 @@ for var in gpp ter; do
   TRENDY/$var'/'ensmean_$var'_'EP.nc
 
   cdo -L -divc,1e+12 -fldsum -mul TRENDY/$var'/'ensmean_$var'_'CP.nc \
-      -gridarea TRENDY/ensmean_gpp_CP.nc \
+      -gridarea TRENDY/$var'/'ensmean_$var'_'CP.nc \
       TRENDY/$var'/'ensmean_$var'_'CP_anomaly_global.nc
   cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,23,90 -mul \
       TRENDY/$var'/'ensmean_$var'_'CP.nc -gridarea \
