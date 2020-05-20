@@ -7,7 +7,7 @@ from pylab import text
 from scipy.stats import pearsonr
 import statsmodels.api as sm
 
-folderIN = '/srv/ccrc/data02/z5227845/research/lpj_guess/runs/CP_EP_comp_TRENDY/'
+folderIN = ''
 def plot(axis, model, var, region, experiment):
 
     TRENDY = nc.Dataset(folderIN+'TRENDY/'+var+'/ensmean_'+var+experiment+
