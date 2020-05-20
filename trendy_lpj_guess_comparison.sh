@@ -1,4 +1,4 @@
-pathwayTRENDY='/srv/ccrc/data02/z5227845/research/TRENDY/S2_old'
+pathwayTRENDY=''
 
 for model in CLM4.5 JSBACH JULES LPX VEGAS VISIT; do
   cdo -L -setreftime,1860-01-01,12:00,1day -settaxis,1860-01-01,12:00,1month \
@@ -158,4 +158,83 @@ for var in gpp ter; do
       TRENDY/$var'/'ensmean_$var'_'EP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'EP.nc \
       TRENDY/$var'/'ensmean_$var'_'EP_anomaly_australia.nc
+done
+
+pathwayLPJGUESS=''
+
+cdo -L -chname,mra,ter -add $pathwayLPJGUESS'/'mra_LPJ-GUESS_1901-2015.nc \
+    $pathwayLPJGUESS'/'mrh_LPJ-GUESS_1901-2015.nc \
+    LPJ-GUESS'/'ter/ter_LPJ-GUESS_1901-2015.nc
+cdo chname,mgpp,gpp $pathwayLPJGUESS'/'mgpp_LPJ-GUESS_1901-2015.nc \
+    LPJ-GUESS'/'gpp/gpp_LPJ-GUESS_1901-2015.nc
+
+for var in gpp ter; do
+
+  cdo selyear,1960/2013 LPJ-GUESS'/'$var'/'$var'_'LPJ-GUESS_1901-2015.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'1960-2013.nc
+
+  cdo ymonmean LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'1960-2013.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'clim.nc
+
+  cdo sub LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'1960-2013.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'clim.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly.nc
+
+  cdo detrend LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc
+
+  cdo selyear,1972,1973 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1972-1973_EP.nc
+  cdo selyear,1976,1977 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1976-1977_EP.nc
+  cdo selyear,1997,1998 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1997-1998_EP.nc
+  cdo selyear,2006,2007 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2006-2007_EP.nc
+
+  cdo selyear,1965,1966 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1965-1966_CP.nc
+  cdo selyear,1968,1969 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1968-1969_CP.nc
+  cdo selyear,1987,1988 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1987-1988_CP.nc
+  cdo selyear,1994,1995 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1994-1995_CP.nc
+  cdo selyear,2002,2003 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2002-2003_CP.nc
+  cdo selyear,2004,2005 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2004-2005_CP.nc
+  cdo selyear,2009,2010 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2009-2010_CP.nc
+
+  cdo ensmean LPJ-GUESS/$var'/'$var*anomaly*CP.nc \
+      LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc
+  cdo ensmean LPJ-GUESS/$var'/'$var*anomaly*EP.nc \
+      LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc
+
+  cdo -L -divc,1e+12 -fldsum -mul \
+      LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc \
+      -gridarea LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc \
+      LPJ-GUESS/$var'/'ensmean_$var'_'CP_anomaly_global.nc
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-23,23 -mul \
+      LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc -gridarea \
+      LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc \
+      LPJ-GUESS/$var'/'ensmean_$var'_'CP_anomaly_tropical.nc
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
+      LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc -gridarea \
+      LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc \
+      LPJ-GUESS/$var'/'ensmean_$var'_'CP_anomaly_australia.nc
+
+  cdo -L -divc,1e+12 -fldsum -mul \
+      LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc \
+      -gridarea LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc \
+      LPJ-GUESS/$var'/'ensmean_$var'_'EP_anomaly_global.nc
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-23,23 -mul \
+      LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc -gridarea \
+      LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc \
+      LPJ-GUESS/$var'/'ensmean_$var'_'EP_anomaly_tropical.nc
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
+      LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc -gridarea \
+      LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc \
+      LPJ-GUESS/$var'/'ensmean_$var'_'EP_anomaly_australia.nc
 done
