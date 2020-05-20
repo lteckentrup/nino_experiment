@@ -110,7 +110,7 @@ for var in gpp ter; do
     cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,23,90 -mul \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc -gridarea \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
-        TRENDY/$var'/'$model'_'ensmean_$var'_'P_anomaly_NH.nc
+        TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly_NH.nc
     cdo -L -divc,1e+12 -fldsum -sellonlatbox,-180,180,-60,23 -mul \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc -gridarea \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
