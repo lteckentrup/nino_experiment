@@ -53,11 +53,11 @@ for var in gpp ter; do
   mv TRENDY/$var'/'VEGAS_S2_$var'.'nc TRENDY/$var'/'VEGAS_S2_$var'_'original.nc
     cdo -L -setgrid,halfdegree.txt -invertlat -sellonlatbox,-180,180,-90,90 \
         TRENDY/$var'/'VEGAS_S2_$var'_'original.nc \
-        TRENDY/$var'/'VEGAS_S2_$var'_'.nc
+        TRENDY/$var'/'VEGAS_S2_$var'.'nc
 
   mv TRENDY/$var'/'VISIT_S2_$var'.'nc TRENDY/$var'/'VISIT_S2_$var'_'original.nc
     cdo -L -setgrid,halfdegree.txt TRENDY/$var'/'VEGAS_S2_$var'_'original.nc \
-        TRENDY/$var'/'VEGAS_S2_$var'_'.nc
+        TRENDY/$var'/'VEGAS_S2_$var'.'nc
          
   for model in CLM4.5 JSBACH JULES LPX ORCHIDEE VEGAS VISIT; do
     cdo selyear,1960/2013 TRENDY/$var'/'$model'_'S2_$var'.'nc \
