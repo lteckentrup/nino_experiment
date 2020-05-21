@@ -115,7 +115,7 @@ for var in gpp ter; do
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc -gridarea \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly_tropical.nc
-    cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
+    cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.75 -mul \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc -gridarea \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly.nc \
         TRENDY/$var'/'$model'_'ensmean_$var'_'CP_anomaly_australia.nc
@@ -128,7 +128,7 @@ for var in gpp ter; do
         TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc -gridarea \
         TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc \
         TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly_tropical.nc
-    cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
+    cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.75 -mul \
         TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc -gridarea \
         TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly.nc \
         TRENDY/$var'/'$model'_'ensmean_$var'_'EP_anomaly_australia.nc
@@ -146,7 +146,7 @@ for var in gpp ter; do
       TRENDY/$var'/'ensmean_$var'_'CP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'CP.nc \
       TRENDY/$var'/'ensmean_$var'_'CP_anomaly_tropical.nc
-  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.75 -mul \
       TRENDY/$var'/'ensmean_$var'_'CP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'CP.nc \
       TRENDY/$var'/'ensmean_$var'_'CP_anomaly_australia.nc
@@ -158,7 +158,7 @@ for var in gpp ter; do
       TRENDY/$var'/'ensmean_$var'_'EP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'EP.nc \
       TRENDY/$var'/'ensmean_$var'_'EP_anomaly_tropical.nc
-  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.75 -mul \
       TRENDY/$var'/'ensmean_$var'_'EP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'EP.nc \
       TRENDY/$var'/'ensmean_$var'_'EP_anomaly_australia.nc
@@ -214,7 +214,7 @@ for var in gpp ter; do
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2004-2005_CP.nc
   cdo selyear,2009,2010 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2009-2010_CP.nc
-          
+
   cdo ensmean LPJ-GUESS/$var'/'$var*anomaly*CP.nc \
       LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc
   cdo ensmean LPJ-GUESS/$var'/'$var*anomaly*EP.nc \
@@ -228,7 +228,7 @@ for var in gpp ter; do
       LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc -gridarea \
       LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc \
       LPJ-GUESS/$var'/'ensmean_$var'_'CP_anomaly_tropical.nc
-  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.75 -mul \
       LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc -gridarea \
       LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc \
       LPJ-GUESS/$var'/'ensmean_$var'_'CP_anomaly_australia.nc
@@ -241,7 +241,7 @@ for var in gpp ter; do
       LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc -gridarea \
       LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc \
       LPJ-GUESS/$var'/'ensmean_$var'_'EP_anomaly_tropical.nc
-  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.25 -mul \
+  cdo -L -divc,1e+12 -fldsum -sellonlatbox,112.25,153.75,-43.75,-10.75 -mul \
       LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc -gridarea \
       LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc \
       LPJ-GUESS/$var'/'ensmean_$var'_'EP_anomaly_australia.nc
