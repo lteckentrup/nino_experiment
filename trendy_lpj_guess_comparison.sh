@@ -1,4 +1,4 @@
-pathwayTRENDY='/srv/ccrc/data02/z5227845/research/TRENDY/S2_old'
+pathwayTRENDY=''
 
 for model in CLM4.5 JSBACH JULES LPX VEGAS VISIT; do
   cdo -L -setreftime,1860-01-01,12:00,1day -settaxis,1860-01-01,12:00,1month \
@@ -185,7 +185,7 @@ for var in gpp ter; do
   done
 done
     
-pathwayLPJGUESS='/srv/ccrc/data02/z5227845/research/lpj_guess/runs/global_CRUNCEP'
+pathwayLPJGUESS=''
 
 cdo -L -chname,mra,ter -add $pathwayLPJGUESS'/'mra_LPJ-GUESS_1901-2015.nc \
     $pathwayLPJGUESS'/'mrh_LPJ-GUESS_1901-2015.nc \
