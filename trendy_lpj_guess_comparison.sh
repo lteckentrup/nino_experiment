@@ -72,7 +72,10 @@ for var in gpp ter; do
 
     cdo -L -setgrid,halfdegree.txt -detrend \
         TRENDY/$var'/'$model'_'S2_$var'_'anomaly.nc \
-        TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc
+        TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend_nomask.nc
+
+    cdo mul mask.nc TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend_nomask.nc \
+            TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc
 
     cdo selyear,1969,1970 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
         TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1969-1970_EP.nc
@@ -162,8 +165,26 @@ for var in gpp ter; do
       TRENDY/$var'/'ensmean_$var'_'EP.nc -gridarea \
       TRENDY/$var'/'ensmean_$var'_'EP.nc \
       TRENDY/$var'/'ensmean_$var'_'EP_anomaly_australia.nc
-done
 
+  for model in CLM4.5 JSBACH JULES LPX ORCHIDEE VEGAS VISIT; do
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend_nomask.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1969-1970_EP.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1972-1973_EP.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1976-1977_EP.nc 
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1982-1983_EP.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1986-1987_EP.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1997-1998_EP.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'2006-2007_EP.nc
+
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1968-1969_CP.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1977-1978_CP.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1994-1995_CP.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'2002-2003_CP.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'2004-2005_CP.nc
+    rm TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'2009-2010_CP.nc
+  done
+done
+    
 pathwayLPJGUESS='/srv/ccrc/data02/z5227845/research/lpj_guess/runs/global_CRUNCEP'
 
 cdo -L -chname,mra,ter -add $pathwayLPJGUESS'/'mra_LPJ-GUESS_1901-2015.nc \
@@ -186,7 +207,7 @@ for var in gpp ter; do
 
   cdo detrend LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc
-
+    
   cdo selyear,1969,1970 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1969-1970_EP.nc
   cdo selyear,1972,1973 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
@@ -245,4 +266,19 @@ for var in gpp ter; do
       LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc -gridarea \
       LPJ-GUESS/$var'/'$var'_'EP_anomaly.nc \
       LPJ-GUESS/$var'/'ensmean_$var'_'EP_anomaly_australia.nc
+
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1969-1970_EP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1972-1973_EP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1976-1977_EP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1982-1983_EP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1986-1987_EP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1997-1998_EP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2006-2007_EP.nc
+
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1968-1969_CP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1977-1978_CP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1994-1995_CP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2002-2003_CP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2004-2005_CP.nc
+  rm LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2009-2010_CP.nc
 done
