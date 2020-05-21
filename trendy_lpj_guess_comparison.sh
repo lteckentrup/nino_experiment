@@ -1,4 +1,4 @@
-pathwayTRENDY=''
+pathwayTRENDY='/srv/ccrc/data02/z5227845/research/TRENDY/S2_old'
 
 for model in CLM4.5 JSBACH JULES LPX VEGAS VISIT; do
   cdo -L -setreftime,1860-01-01,12:00,1day -settaxis,1860-01-01,12:00,1month \
@@ -74,21 +74,25 @@ for var in gpp ter; do
         TRENDY/$var'/'$model'_'S2_$var'_'anomaly.nc \
         TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc
 
+    cdo selyear,1969,1970 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
+        TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1969-1970_EP.nc
     cdo selyear,1972,1973 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
         TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1972-1973_EP.nc
     cdo selyear,1976,1977 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
         TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1976-1977_EP.nc
+    cdo selyear,1982,1983 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
+        TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1982-1983_EP.nc
+    cdo selyear,1986,1987 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
+        TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1986-1987_EP.nc
     cdo selyear,1997,1998 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
         TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1997-1998_EP.nc
     cdo selyear,2006,2007 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
         TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'2006-2007_EP.nc
 
-    cdo selyear,1965,1966 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
-        TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1965-1966_CP.nc
     cdo selyear,1968,1969 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
         TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1968-1969_CP.nc
-    cdo selyear,1987,1988 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
-        TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1987-1988_CP.nc
+    cdo selyear,1977,1978 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
+        TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1977-1978_CP.nc
     cdo selyear,1994,1995 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
         TRENDY/$var'/'$model'_'S2_$var'_'anomaly'_'1994-1995_CP.nc
     cdo selyear,2002,2003 TRENDY/$var'/'$model'_'S2_$var'_'anomaly_detrend.nc \
@@ -160,7 +164,7 @@ for var in gpp ter; do
       TRENDY/$var'/'ensmean_$var'_'EP_anomaly_australia.nc
 done
 
-pathwayLPJGUESS=''
+pathwayLPJGUESS='/srv/ccrc/data02/z5227845/research/lpj_guess/runs/global_CRUNCEP'
 
 cdo -L -chname,mra,ter -add $pathwayLPJGUESS'/'mra_LPJ-GUESS_1901-2015.nc \
     $pathwayLPJGUESS'/'mrh_LPJ-GUESS_1901-2015.nc \
@@ -183,21 +187,25 @@ for var in gpp ter; do
   cdo detrend LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc
 
+  cdo selyear,1969,1970 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1969-1970_EP.nc
   cdo selyear,1972,1973 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1972-1973_EP.nc
   cdo selyear,1976,1977 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1976-1977_EP.nc
+  cdo selyear,1982,1983 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1982-1983_EP.nc
+  cdo selyear,1986,1987 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1986-1987_EP.nc
   cdo selyear,1997,1998 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1997-1998_EP.nc
   cdo selyear,2006,2007 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2006-2007_EP.nc
 
-  cdo selyear,1965,1966 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
-      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1965-1966_CP.nc
   cdo selyear,1968,1969 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1968-1969_CP.nc
-  cdo selyear,1987,1988 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
-      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1987-1988_CP.nc
+  cdo selyear,1977,1978 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
+      LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1977-1978_CP.nc
   cdo selyear,1994,1995 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'1994-1995_CP.nc
   cdo selyear,2002,2003 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
@@ -206,7 +214,7 @@ for var in gpp ter; do
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2004-2005_CP.nc
   cdo selyear,2009,2010 LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly_detrend.nc \
       LPJ-GUESS/$var'/'$var'_'LPJ-GUESS'_'anomaly'_'2009-2010_CP.nc
-
+          
   cdo ensmean LPJ-GUESS/$var'/'$var*anomaly*CP.nc \
       LPJ-GUESS/$var'/'$var'_'CP_anomaly.nc
   cdo ensmean LPJ-GUESS/$var'/'$var*anomaly*EP.nc \
