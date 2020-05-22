@@ -116,4 +116,4 @@ for year in `seq 1901 2015`; do
 rm insol_CRUNCEP_$year'.'nc
 done
 
-qsub arrange.sh
+qsub run.sh
