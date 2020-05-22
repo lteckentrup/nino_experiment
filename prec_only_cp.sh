@@ -199,7 +199,6 @@ cdo -b F64 -O mergetime anomaly/prec_CRUNCEP_1992_tmp1.nc \
                         anomaly/prec_CRUNCEP_1992_tmp.nc \
                         anomaly/prec_CRUNCEP_1992_anomaly.nc
 
-
 cdo -b F64 -settaxis,1997-05-01,12:00,1day -setcalendar,365_day -selmon,5/12 \
 anomaly/prec_CRUNCEP_2002_anomaly.nc anomaly/prec_CRUNCEP_1997_tmp.nc
 cdo -b F64 -settaxis,1998-01-01,12:00,1day -setcalendar,365_day -selmon,1/5 \
