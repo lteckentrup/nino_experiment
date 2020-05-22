@@ -135,7 +135,6 @@ cdo -b F64 -O mergetime anomaly/insol_CRUNCEP_1988_tmp1.nc \
                         anomaly/insol_CRUNCEP_1988_tmp.nc \
                         anomaly/insol_CRUNCEP_1988_anomaly.nc
 
-
 cdo -b F64 -settaxis,1991-05-01,12:00,1day -selmon,5/12 \
 anomaly/insol_CRUNCEP_1997_anomaly.nc anomaly/insol_CRUNCEP_1991_tmp.nc
 cdo -b F64 -settaxis,1992-01-01,12:00,1day -selmon,1/6 \
@@ -270,5 +269,7 @@ rm insol_CRUNCEP_1971-2000.nc
 rm insol_CRUNCEP_1976-2005.nc
 rm insol_CRUNCEP_1981-2010.nc
 rm insol_CRUNCEP_1986-2015.nc
+
+cdo -b F64 mergetime insol*nc insol_CRUNCEP_1901-2015_EP1_anomaly.nc
 
 qsub run_arrange.sh
