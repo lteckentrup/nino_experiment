@@ -83,13 +83,6 @@ cdo -b F64 -O mergetime insol_CRUNCEP_1991_tmp1.nc insol_CRUNCEP_1991_tmp.nc \
     insol_CRUNCEP_1991.nc
 cdo -b F64 -O mergetime insol_CRUNCEP_1992_tmp1.nc insol_CRUNCEP_1992_tmp.nc \
     insol_CRUNCEP_1992.nc
-cdo -b F64 -selmon,1/4 insol_CRUNCEP_1991.nc insol_CRUNCEP_1991_tmp1.nc
-cdo -b F64 -selmon,7/12 insol_CRUNCEP_1992.nc insol_CRUNCEP_1992_tmp1.nc
-
-cdo -b F64 -O mergetime insol_CRUNCEP_1991_tmp1.nc insol_CRUNCEP_1991_tmp.nc \
-    insol_CRUNCEP_1991.nc
-cdo -b F64 -O mergetime insol_CRUNCEP_1992_tmp1.nc insol_CRUNCEP_1992_tmp.nc \ 
-    insol_CRUNCEP_1992.nc
 
 cdo -b F64 -settaxis,1997-05-01,00:00,1day -selmon,5/12 insol_CRUNCEP_1994.nc \
     insol_CRUNCEP_1997_tmp.nc
