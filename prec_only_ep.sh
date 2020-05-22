@@ -120,7 +120,6 @@ cdo -b F64 -O mergetime anomaly/prec_CRUNCEP_1978_tmp1.nc \
                         anomaly/prec_CRUNCEP_1978_tmp.nc \
                         anomaly/prec_CRUNCEP_1978_anomaly.nc
 
-
 cdo -b F64 -settaxis,1987-05-01,12:00,1day -selmon,5/12 \
 anomaly/prec_CRUNCEP_1982_anomaly.nc anomaly/prec_CRUNCEP_1987_tmp.nc
 cdo -b F64 -settaxis,1988-01-01,12:00,1day -selmon,1,2 \
@@ -272,4 +271,5 @@ rm prec_CRUNCEP_1981-2010.nc
 rm prec_CRUNCEP_1986-2015.nc
 
 cdo -b F64 mergetime prec*nc prec_CRUNCEP_1901-2015_EP1_anomaly.nc
+
 qsub run_arrange.sh
