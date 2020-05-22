@@ -135,7 +135,6 @@ cdo -b F64 -O mergetime anomaly/insol_CRUNCEP_1977_tmp1.nc \
                         anomaly/insol_CRUNCEP_1977_tmp.nc \
                         anomaly/insol_CRUNCEP_1977_anomaly.nc
 
-
 cdo -b F64 -settaxis,1982-04-01,12:00,1day -setcalendar,365_day -selmon,4/12 \
 anomaly/insol_CRUNCEP_2009_anomaly.nc anomaly/insol_CRUNCEP_1982_tmp.nc
 cdo -b F64 -settaxis,1983-01-01,12:00,1day -setcalendar,365_day -selmon,1/6 \
