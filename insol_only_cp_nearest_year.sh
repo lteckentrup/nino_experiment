@@ -109,6 +109,7 @@ cdo -b F64 -O mergetime insol_CRUNCEP_2007_tmp1.nc insol_CRUNCEP_2007_tmp.nc \
     insol_CRUNCEP_2007.nc
 
 rm *tmp*nc
+
 cdo -b F64 mergetime insol_CRUNCEP_*nc insol_CRUNCEP_1901-2015_CP.nc
 
 for year in `seq 1901 2015`; do
