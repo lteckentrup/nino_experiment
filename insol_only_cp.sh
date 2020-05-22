@@ -277,4 +277,6 @@ rm insol_CRUNCEP_1976-2005.nc
 rm insol_CRUNCEP_1981-2010.nc
 rm insol_CRUNCEP_1986-2015.nc
 
+cdo -b F64 mergetime insol*nc insol_CRUNCEP_1901-2015_CP1_anomaly.nc
+
 qsub run_arrange.sh
