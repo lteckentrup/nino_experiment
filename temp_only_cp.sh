@@ -58,7 +58,6 @@ for year in `seq 1971 1975`; do
 cdo -b F64 sub temp_CRUNCEP_$year'.'nc temp_CRUNCEP_1956-1985.nc \
                anomaly/temp_CRUNCEP_$year'_'anomaly.nc
 done
-
 for year in `seq 1976 1980`; do
 cdo -b F64 sub temp_CRUNCEP_$year'.'nc temp_CRUNCEP_1961-1990.nc \
                anomaly/temp_CRUNCEP_$year'_'anomaly.nc
