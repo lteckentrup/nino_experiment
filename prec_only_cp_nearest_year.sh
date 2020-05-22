@@ -9,7 +9,8 @@ cdo -b F64 -selmon,2/12 prec_CRUNCEP_1970.nc prec_CRUNCEP_1970_tmp1.nc
 
 cdo -b F64 -O mergetime prec_CRUNCEP_1969_tmp1.nc prec_CRUNCEP_1969_tmp.nc \
     prec_CRUNCEP_1969.nc
-cdo -b F64 -O mergetime prec_CRUNCEP_1970_tmp1.nc prec_CRUNCEP_1970_tmp.nc prec_CRUNCEP_1970.nc
+cdo -b F64 -O mergetime prec_CRUNCEP_1970_tmp1.nc prec_CRUNCEP_1970_tmp.nc \
+    prec_CRUNCEP_1970.nc
 
 cdo -b F64 -settaxis,1972-05-01,00:00,1day -selmon,5/12 prec_CRUNCEP_1968.nc \
     prec_CRUNCEP_1972_tmp.nc
