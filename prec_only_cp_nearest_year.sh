@@ -1,6 +1,4 @@
-for year in `seq 1901 2015`; do
-cp ../prec_cru/prec_CRUNCEP_$year'.'nc .
-done
+cp ../prec_cru/prec_*nc .
 
 cdo -b F64 -settaxis,1969-08-01,00:00,1day -selmon,8/12 prec_CRUNCEP_1968.nc \
     prec_CRUNCEP_1969_tmp.nc
