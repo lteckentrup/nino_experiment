@@ -6,7 +6,7 @@ from matplotlib.colors import BoundaryNorm
 
 def plot(experiment, position, month_count, var):
 
-    folderIN = '/srv/ccrc/data02/z5227845/research/lpj_guess/runs/'
+    folderIN = '../'
 
     if var in ('NEE', 'GPP', 'TER', 'Fire', 'NEE_cum', 'GPP_cum', 'TER_cum',
                'Fire_cum'):
