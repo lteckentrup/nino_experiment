@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import BoundaryNorm
 import os
 
-home ='/srv/ccrc/data02/z5227845/research/'
-folderOUT ='/srv/ccrc/data02/z5227845/research/lpj_guess/runs/plots/'
+home ='../../'
+folderOUT =''
 
 def plot(model, name, experiment, position, v):
     folderIN=home+'/TRENDY/S2/'+v+'/bootstrap/'
