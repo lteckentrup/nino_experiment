@@ -4,29 +4,31 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import BoundaryNorm
 
-def plot(experiment, position, month_count, var):
+def plot(experiment, setup, position, month_count, var):
 
-    folderIN = '../'
+    folderIN = '/srv/ccrc/data02/z5227845/research/lpj_guess/runs_c_only/'
 
     if var in ('NEE', 'GPP', 'TER', 'Fire', 'NEE_cum', 'GPP_cum', 'TER_cum',
                'Fire_cum'):
-        # if position in (1,3,5):
-        #     model = open_ncfile(folderIN+
-        #                         'global_CRUNCEP_no_fire_no_dist_only_CP_anomaly/'
-        #                         'cflux_all_anomaly_LPJ-GUESS_1901-2015.nc')
-        # else:
-        #     model = open_ncfile(folderIN+
-        #                         'global_CRUNCEP_no_fire_no_dist_only_EP_anomaly/'
-        #                         'cflux_all_anomaly_LPJ-GUESS_1901-2015.nc')
-
-        if position in (1,3,5):
-            model = open_ncfile(folderIN+
-                                'global_CRUNCEP_only_CP_anomaly/'
-                                'cflux_all_anomaly_LPJ-GUESS_1901-2015.nc')
+        if setup == 'no_fire_no_dist':
+            if position in (1,3,5):
+                model = open_ncfile(folderIN+
+                                    'global_CRUNCEP_no_fire_no_dist_only_CP_anomaly/'
+                                    'cflux_anomaly_LPJ-GUESS_1901-2015.nc')
+            else:
+                model = open_ncfile(folderIN+
+                                    'global_CRUNCEP_no_fire_no_dist_only_EP_anomaly/'
+                                    'cflux_anomaly_LPJ-GUESS_1901-2015.nc')
         else:
-            model = open_ncfile(folderIN+
-                                'global_CRUNCEP_only_EP_anomaly/'
-                                'cflux_all_anomaly_LPJ-GUESS_1901-2015.nc')
+            if position in (1,3,5):
+                model = open_ncfile(folderIN+
+                                    'global_CRUNCEP_only_CP_anomaly/'
+                                    'cflux_all_anomaly_LPJ-GUESS_1901-2015.nc')
+            else:
+                model = open_ncfile(folderIN+
+                                    'global_CRUNCEP_only_EP_anomaly/'
+                                    'cflux_all_anomaly_LPJ-GUESS_1901-2015.nc')
+
     elif var in ('Total', 'VegC', 'LitterC', 'SoilC'):
 
         if position in (1,3,5):
@@ -72,7 +74,7 @@ def plot(experiment, position, month_count, var):
                         wspace=0.00, hspace=0.2)
 
     if var in ('NEE', 'GPP', 'TER', 'Fire'):
-        levels = np.arange(-120,140,20)
+        levels = [-120,-100,-80,-60,-40,-20,-5,5,20,40,60,80,100,120]
         if position in (1,2):
             plt.title(experiment + '-only-scenario \n \n' + 'NBP', fontsize=13)
         else:
@@ -94,7 +96,6 @@ def plot(experiment, position, month_count, var):
         else:
             plt.title(var, fontsize=12)
 
-
     norm = BoundaryNorm(levels, ncolors=cmap.N, clip=True)
     cnplot = map.pcolormesh(x, y, cut_data, cmap=cmap, norm=norm)
     cax = plt.axes([0.1, 0.08, 0.8, 0.02])
@@ -102,39 +103,58 @@ def plot(experiment, position, month_count, var):
     cbar.ax.tick_params(labelsize=10)
     plt.colorbar(ticks = levels, cax=cax, orientation='horizontal')
     if var in ('NEE', 'GPP', 'TER', 'Fire'):
-        cbar.set_label('Carbon flux anomaly [gC]',fontsize=10)
+        cbar.set_label('Carbon flux anomaly [gC m$^{-2}$ yr$^{-1}$]',fontsize=10)
     elif var in ('Total', 'VegC', 'LitterC', 'SoilC'):
-        cbar.set_label('Carbon pool anomaly [gC yr-1]',fontsize=10)
+        cbar.set_label('Carbon pool anomaly [gC m$^{-2}$]',fontsize=10)
     elif var in ('NEE_cum', 'GPP_cum', 'TER_cum', 'Fire_cum'):
-        cbar.set_label('Carbon flux anomaly (cumulative) [gC]',fontsize=10)
+        cbar.set_label('Carbon flux anomaly (cumulative) [gC m$^{-2}$]',
+                       fontsize=10)
 
 #-- call  function and plot figure
 fig, ax = plt.subplots(1,figsize=(8.1, 8.7))
-# plot('Only CP', 1, 112, 'NEE')
-# plot('Only EP', 2, 112, 'NEE')
-# plot('Only CP', 3, 112, 'GPP')
-# plot('Only EP', 4, 112, 'GPP')
-# plot('Only CP', 5, 112, 'TER')
-# plot('Only EP', 6, 112, 'TER')
-# plot('Only CP', 7, 112, 'Fire')
-# plot('Only EP', 8, 112, 'Fire')
+plot('Only CP', '', 1, 112, 'NEE')
+plot('Only EP', '', 2, 112, 'NEE')
+plot('Only CP', '', 3, 112, 'GPP')
+plot('Only EP', '', 4, 112, 'GPP')
+plot('Only CP', '', 5, 112, 'TER')
+plot('Only EP', '', 6, 112, 'TER')
+plot('Only CP', '', 7, 112, 'Fire')
+plot('Only EP', '', 8, 112, 'Fire')
+# plt.savefig('carbon_flux_anomalies_map.png', dpi = 600)
+plt.savefig('FigB1.png', dpi = 600)
 
-# plot('Only CP', 1, 112, 'NEE_cum')
-# plot('Only EP', 2, 112, 'NEE_cum')
-# plot('Only CP', 3, 112, 'GPP_cum')
-# plot('Only EP', 4, 112, 'GPP_cum')
-# plot('Only CP', 5, 112, 'TER_cum')
-# plot('Only EP', 6, 112, 'TER_cum')
-# plot('Only CP', 7, 112, 'Fire_cum')
-# plot('Only EP', 8, 112, 'Fire_cum')
+fig, ax = plt.subplots(2,figsize=(8.1, 8.7))
+plot('Only CP', 'no_fire_no_dist', 1, 112, 'NEE')
+plot('Only EP', 'no_fire_no_dist', 2, 112, 'NEE')
+plot('Only CP', 'no_fire_no_dist', 3, 112, 'GPP')
+plot('Only EP', 'no_fire_no_dist', 4, 112, 'GPP')
+plot('Only CP', 'no_fire_no_dist', 5, 112, 'TER')
+plot('Only EP', 'no_fire_no_dist', 6, 112, 'TER')
+plot('Only CP', 'no_fire_no_dist', 7, 112, 'Fire')
+plot('Only EP', 'no_fire_no_dist', 8, 112, 'Fire')
+# plt.savefig('carbon_flux_anomalies_no_dist_no_fire_map.png', dpi = 600)
+plt.savefig('FigB2.png', dpi = 600)
 
-plot('Only CP', 1, 112, 'Total')
-plot('Only EP', 2, 112, 'Total')
-plot('Only CP', 3, 112, 'VegC')
-plot('Only EP', 4, 112, 'VegC')
-plot('Only CP', 5, 112, 'LitterC')
-plot('Only EP', 6, 112, 'LitterC')
-plot('Only CP', 7, 112, 'SoilC')
-plot('Only EP', 8, 112, 'SoilC')
-plt.show()
-#plt.savefig('carbon_flux_cum_anomalies_map.png', dpi = 600)
+fig, ax = plt.subplots(3,figsize=(8.1, 8.7))
+plot('Only CP', '', 1, 112, 'NEE_cum')
+plot('Only EP', '', 2, 112, 'NEE_cum')
+plot('Only CP', '', 3, 112, 'GPP_cum')
+plot('Only EP', '', 4, 112, 'GPP_cum')
+plot('Only CP', '', 5, 112, 'TER_cum')
+plot('Only EP', '', 6, 112, 'TER_cum')
+plot('Only CP', '', 7, 112, 'Fire_cum')
+plot('Only EP', '', 8, 112, 'Fire_cum')
+# plt.savefig('carbon_flux_cum_anomalies_map.png', dpi = 600)
+plt.savefig('FigB3.png', dpi = 600)
+
+fig, ax = plt.subplots(4,figsize=(8.1, 8.7))
+plot('Only CP', '', 1, 112, 'Total')
+plot('Only EP', '', 2, 112, 'Total')
+plot('Only CP', '', 3, 112, 'VegC')
+plot('Only EP', '', 4, 112, 'VegC')
+plot('Only CP', '', 5, 112, 'LitterC')
+plot('Only EP', '', 6, 112, 'LitterC')
+plot('Only CP', '', 7, 112, 'SoilC')
+plot('Only EP', '', 8, 112, 'SoilC')
+# plt.savefig('carbon_pool_anomalies_map.png', dpi = 600)
+plt.savefig('FigB4.png', dpi = 600)
