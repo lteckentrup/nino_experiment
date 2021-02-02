@@ -7,7 +7,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 def plot(axis, region, param, title):
 
-    pathway='../climate_paper/'
+    pathway='../../runs/climate_paper/'
 
     #-- open net-cdf and read in variables
     EP = nc.Dataset(pathway+param+'_1901-2015_CRUNCEP_EP_anomaly_annual_' \
@@ -32,26 +32,26 @@ def plot(axis, region, param, title):
 
     time = np.arange(1901,2016)
 
-    axis.plot(time, df_ep_ctrl[param], lw=2.0, ls=":", color = '#1f77b4', 
-              label = 'Only EP vs control climate', alpha=0.9)
-    axis.plot(time, df_cp_ctrl[param], lw=2.0, ls=":", color = '#ff7f0e', 
-              label = 'Only CP vs control climate', alpha=0.9)
+    axis.plot(time, df_ep_ctrl[param], lw=3.0, ls=":", color = '#1f77b4',
+              label = 'Only EP vs CTRL', alpha=0.9)
+    axis.plot(time, df_cp_ctrl[param], lw=3.0, ls=":", color = '#ff7f0e',
+              label = 'Only CP vs CTRL', alpha=0.9)
 
     axis2 = axis.twinx()
-    
-    axis2.plot(time, df_ep_ctrl_smooth[param], lw=2.0, ls="-", 
-               color = '#1f77b4', 
-               label = 'Only EP vs control climate (cumulative)', zorder=0)
-    axis2.plot(time, df_cp_ctrl_smooth[param], lw=2.0, ls="-",
-               color = '#ff7f0e', 
-               label = 'Only CP vs control climate (cumulative)', zorder=0)
+
+    axis2.plot(time, df_ep_ctrl_smooth[param], lw=3.0, ls="-",
+               color = '#1f77b4',
+               label = 'Only EP vs CTRL (mvg. avg./ cumulative)', zorder=0)
+    axis2.plot(time, df_cp_ctrl_smooth[param], lw=3.0, ls="-",
+               color = '#ff7f0e',
+               label = 'Only CP vs CTRL (mvg. avg./ cumulative)', zorder=0)
 
     if param == 'temp':
         axis.set_ylim(-0.4,0.4)
-        axis2.set_ylim(-0.04,0.04)
+        axis2.set_ylim(-0.05,0.05)
     elif param == 'prec':
-        axis.set_ylim(-120,120)
-        axis2.set_ylim(-540,540)
+        axis.set_ylim(-210,210)
+        axis2.set_ylim(-840,840)
     elif param == 'insol':
         axis.set_ylim(-6.5,6.5)
         axis2.set_ylim(-0.42,0.42)
@@ -68,7 +68,7 @@ def plot(axis, region, param, title):
     elif param == 'insol':
         axis2.set_ylabel('$\Delta$ '+title+'$_{\mathrm{cum}}$ [W m-2]')
     if axis == ax1:
-        axis2.legend(loc='upper center', bbox_to_anchor=(3.4, -2.70), ncol=1,
+        axis2.legend(loc='upper center', bbox_to_anchor=(2.85, -2.70), ncol=1,
                      fancybox=True, frameon=False)
 
 #-- call  function and plot data
@@ -83,8 +83,6 @@ fig.subplots_adjust(bottom=0.15)
 fig.subplots_adjust(top=0.95)
 
 plt.rcParams['text.usetex'] = False
-plt.rcParams['font.family'] = "sans-serif"
-plt.rcParams['font.sans-serif'] = "Helvetica"
 plt.rcParams['axes.labelsize'] = 12
 plt.rcParams['font.size'] = 11
 plt.rcParams['legend.fontsize'] = 12
@@ -113,22 +111,23 @@ plot(ax7, 'australia', 'temp', 'T')
 plot(ax8, 'australia', 'prec', 'P')
 plot(ax9, 'australia', 'insol', 'Rad')
 
-ax1.legend(loc='upper center', bbox_to_anchor=(1.4, -2.70), ncol=1,
+ax1.legend(loc='upper center', bbox_to_anchor=(1.25, -2.70), ncol=1,
            fancybox=True, frameon=False)
 
 ax1.set_title('Temperature', fontsize=13)
 ax2.set_title('Precipitation', fontsize=13)
 ax3.set_title('Incoming SW radiation', fontsize=13)
 
-ax1.set_ylabel('Global \n \n  $\Delta$ T [K $\mathrm{yr^{-1}}$]', fontsize=12)
-ax4.set_ylabel('Tropical \n \n $\Delta$ T [K $\mathrm{yr^{-1}}$]', fontsize=12)
-ax7.set_ylabel('Australia \n \n $\Delta$ T [K $\mathrm{yr^{-1}}$]', fontsize=12)
+ax1.set_ylabel('Global \n \n  $\Delta$ T [K]', fontsize=12)
+ax4.set_ylabel('Tropical \n \n $\Delta$ T [K]', fontsize=12)
+ax7.set_ylabel('Australia \n \n $\Delta$ T [K]', fontsize=12)
 
 for axes in (ax2,ax5,ax8):
-    axes.set_ylabel('$\Delta$ P [mm $\mathrm{yr^{-1}}$]', fontsize=12)
+    axes.set_ylabel('$\Delta$ P [mm]', fontsize=12)
 for axes in (ax3,ax6,ax9):
-    axes.set_ylabel('$\Delta$ Rad [W $\mathrm{m^{-2}}$ $\mathrm{yr^{-1}}$]',
+    axes.set_ylabel('$\Delta$ Rad [W $\mathrm{m^{-2}}$]',
                     fontsize=12)
 
 #plt.show()
-plt.savefig('climate_anomalies.pdf')
+# plt.savefig('climate_anomalies.pdf')
+plt.savefig('FigB5.pdf')
